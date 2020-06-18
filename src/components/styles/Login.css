@@ -1,0 +1,28 @@
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+}
+  
+.login-wrapper img {
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.login-wrapper input {
+    width: 400px;
+}
+
+.login-wrapper button {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+}
+
+.login-wrapper h5 {
+    text-align: center;
+}
+

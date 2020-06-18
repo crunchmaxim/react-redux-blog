@@ -4,17 +4,13 @@ import logo from './../../images/logo192.png';
 import { Field, reduxForm } from 'redux-form';
 import isEmail from 'validator/lib/isEmail';
 
-const SignUpForm = (props) => {
+const LoginForm = (props) => {
     const { handleSubmit } = props;
     return (
-        <div className='signup-wrapper'>
+        <div className='login-wrapper'>
             <form onSubmit={handleSubmit}>
                 <img src={logo} />
-                <h5>Уже есть аккаунт? Войдите <Link to='/login'>здесь</Link>.</h5>
-                <div className="form-group">
-                    <label for="usernameInput">Имя пользователя:</label>
-                    <Field name="username" component={Input} validate={requiredValidator} type="text" class="form-control" id="usernameInput"/>
-                </div>
+                <h5>Нет аккаунта? Зарегистрируйтесь <Link to='/signup'>здесь</Link>.</h5>
                 <div className="form-group">
                     <label for="emailInput">Email:</label>
                     <Field name="email" component={Input} validate={[requiredValidator, emailValidator]} type="text" class="form-control" id="emailInput"/>
@@ -23,11 +19,7 @@ const SignUpForm = (props) => {
                     <label for="passwordInput">Пароль:</label>
                     <Field name="password" component={Input} validate={requiredValidator} type="password" class="form-control" id="passwordInput"/>
                 </div>
-                <div className="form-group">
-                    <label for="confirmPasswordInput">Повторите пароль:</label>
-                    <Field name="confirmPassword" component={Input} validate={requiredValidator} type="password" class="form-control" id="confirmPasswordInput"/>
-                </div>
-                <button type="submit" className="btn btn-primary">Зарегистрироваться</button>
+                <button type="submit" className="btn btn-primary">Войти</button>
             </form>
         </div>
     )
@@ -58,4 +50,4 @@ const emailValidator = (value) => {
     return;
 };
 
-export default reduxForm({ form: 'signup' })(SignUpForm);
+export default reduxForm({ form: 'login' })(LoginForm);
