@@ -8,8 +8,21 @@ import store from './redux/store';
 import axios from 'axios';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import jwtDecode from 'jwt-decode';
+import {logout, setMe} from './redux/reducers/usersReducer';
 
 axios.defaults.baseURL = 'https://europe-west1-socialapp2-f9053.cloudfunctions.net/api';
+
+const token = localStorage.token;
+if (token) {
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp*1000 < Date.now()) {
+    store.dispatch(logout());
+  } else {
+    axios.defaults.headers.common['Authorization'] = token;
+    store.dispatch(setMe());
+  }
+}
 
 function App() {
   return (
@@ -19,8 +32,8 @@ function App() {
           <Navbar />
           <div className='container'>
             <Route exact path='/'>Home page</Route>
-            <Route path='/signup'><SignUp/></Route>
-            <Route path='/login'><Login/></Route>
+            <Route path='/login'><Login /></Route>
+            <Route path='/signup'><SignUp /></Route>
           </div>
         </div>
       </Provider>
