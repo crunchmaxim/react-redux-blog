@@ -2,15 +2,17 @@ import axios from 'axios';
 
 const initialState = {
     authUser: {},
-    authorization: false
+    authorization: false,
+    receivedError: ''
 }
 
 // Types
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_UNAUTHORIZATION = 'SET_UNAUTHORIZATION';
+const SET_ERROR = 'SET_ERROR';
 
 // Users reducer
-const usersReducer = (state=initialState, action) => {
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_AUTH_USER_DATA:
             return {
@@ -24,28 +26,48 @@ const usersReducer = (state=initialState, action) => {
                 authUser: {},
                 authorization: false
             }
+        case SET_ERROR:
+            return {
+                ...state,
+                receivedError: action.error
+            }
         default:
             return state;
     }
 }
 
 // Actions
-export const setAuthUserData = (userData) => ({ type: SET_AUTH_USER_DATA, userData});
-export const setUnauthorization = () => ({type: SET_UNAUTHORIZATION})
+export const setAuthUserData = (userData) => ({ type: SET_AUTH_USER_DATA, userData });
+export const setUnauthorization = () => ({ type: SET_UNAUTHORIZATION });
+export const setError = (error) => ({ type: SET_ERROR, error });
 
 // Thunks
 export const signUp = (userCredentials) => async (dispatch) => {
-    const response = await axios.post('/signup', userCredentials);
-    setAuthToken(response.data.token);
-    const userData = await axios.get('/me');
-    dispatch(setAuthUserData(userData.data));
+    try {
+        const response = await axios.post('/signup', userCredentials);
+        setAuthToken(response.data.token);
+        dispatch(setMe());
+    } catch (err) {
+        if (err.response.data.message === "Password should be at least 6 characters") {
+            dispatch(setError('Пароль слишком простой'))
+        } else if (err.response.data.message === "The email address is already in use by another account.") {
+            dispatch(setError('Пользователь с таким email уже существует'))
+        } else if (err.response.data === "Passwords must match") {
+            dispatch(setError('Пароли должны совпадать'));
+        } else if (err.response.data === "User with this name already exists") {
+            dispatch(setError('Пользователь с таким именем уже существует'));
+        }
+    }
 }
 
 export const login = (userCredentials) => async (dispatch) => {
-    const response = await axios.post('/login', userCredentials);
-    setAuthToken(response.data.token);
-    const userData = await axios.get('/me');
-    dispatch(setAuthUserData(userData.data));
+    try {
+        const response = await axios.post('/login', userCredentials);
+        setAuthToken(response.data.token);
+        dispatch(setMe());
+    } catch (error) {
+        dispatch(setError('Неправильный email или пароль'));
+    }
 }
 
 export const logout = () => (dispatch) => {
@@ -61,6 +83,7 @@ export const setMe = () => async (dispatch) => {
 
 // Set auth token
 const setAuthToken = (authToken) => {
+    debugger;
     const token = `Bearer ${authToken}`;
     localStorage.setItem("token", token);
     axios.defaults.headers.common['Authorization'] = token;

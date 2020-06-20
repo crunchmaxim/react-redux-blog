@@ -8,13 +8,14 @@ import { withRouter } from 'react-router-dom';
 const Login = (props) => {
     const onSubmit = (value) => {
         props.login(value);
-        props.history.push('/');
     }
     return (
-        <LoginForm onSubmit={onSubmit}/>
+        <LoginForm onSubmit={onSubmit} receivedError={props.receivedError}/>
     )
 };
 
+const mapStateToProps = (state) => ({
+    receivedError: state.users.receivedError
+})
 
-
-export default connect(null, {login})(withRouter(Login));
+export default connect(mapStateToProps, {login})(Login);

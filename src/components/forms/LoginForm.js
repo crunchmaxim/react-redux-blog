@@ -13,12 +13,13 @@ const LoginForm = (props) => {
                 <h5>Нет аккаунта? Зарегистрируйтесь <Link to='/signup'>здесь</Link>.</h5>
                 <div className="form-group">
                     <label for="emailInput">Email:</label>
-                    <Field name="email" component={Input} validate={[requiredValidator, emailValidator]} type="text" class="form-control" id="emailInput"/>
+                    <Field name="email" component={Input} validate={[requiredValidator, emailValidator]} type="text" class="form-control" id="emailInput" />
                 </div>
                 <div className="form-group">
                     <label for="passwordInput">Пароль:</label>
-                    <Field name="password" component={Input} validate={requiredValidator} type="password" class="form-control" id="passwordInput"/>
+                    <Field name="password" component={Input} validate={requiredValidator} type="password" class="form-control" id="passwordInput" />
                 </div>
+                {props.receivedError && <div className="alert alert-danger">{props.receivedError}</div>}
                 <button type="submit" className="btn btn-primary">Войти</button>
             </form>
         </div>
@@ -29,9 +30,9 @@ const LoginForm = (props) => {
 const Input = (props) => {
     return (
         <div className="form-group">
-            <input {...props.input} {...props}/>
-            {props.meta.touched && props.meta.error ? <div>{props.meta.error}</div> : ''}
-      </div>
+            <input {...props.input} {...props} />
+            {props.meta.touched && props.meta.error ? <div className="alert alert-danger">{props.meta.error}</div> : ''}
+        </div>
     )
 };
 

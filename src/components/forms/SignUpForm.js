@@ -27,6 +27,7 @@ const SignUpForm = (props) => {
                     <label for="confirmPasswordInput">Повторите пароль:</label>
                     <Field name="confirmPassword" component={Input} validate={requiredValidator} type="password" class="form-control" id="confirmPasswordInput"/>
                 </div>
+                {props.receivedError && <div className="alert alert-danger">{props.receivedError}</div>}
                 <button type="submit" className="btn btn-primary">Зарегистрироваться</button>
             </form>
         </div>
@@ -38,7 +39,7 @@ const Input = (props) => {
     return (
         <div className="form-group">
             <input {...props.input} {...props}/>
-            {props.meta.touched && props.meta.error ? <div>{props.meta.error}</div> : ''}
+            {props.meta.touched && props.meta.error ? <div className="alert alert-danger">{props.meta.error}</div> : ''}
       </div>
     )
 };
