@@ -1,0 +1,13 @@
+.logo {
+    width: 50px;
+    margin: 0 10px;
+}
+
+.navbar a {
+    color: white !important;
+    transition: 0.3s all;
+}
+
+.navbar a:hover {
+    color: black !important;
+}
