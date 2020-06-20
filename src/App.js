@@ -10,6 +10,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import jwtDecode from 'jwt-decode';
 import {logout, setMe} from './redux/reducers/usersReducer';
+import HomePage from './components/HomePage';
 
 axios.defaults.baseURL = 'https://europe-west1-socialapp2-f9053.cloudfunctions.net/api';
 
@@ -31,7 +32,7 @@ function App() {
         <div className='app-wrapper'>
           <Navbar />
           <div className='container'>
-            <Route exact path='/'>Home page</Route>
+            <Route exact path='/'><HomePage/></Route>
             <Route path='/login'><Login /></Route>
             <Route path='/signup'><SignUp /></Route>
           </div>
