@@ -28,7 +28,11 @@ const SignUpForm = (props) => {
                     <Field name="confirmPassword" component={Input} validate={requiredValidator} type="password" class="form-control" id="confirmPasswordInput"/>
                 </div>
                 {props.receivedError && <div className="alert alert-danger">{props.receivedError}</div>}
-                <button type="submit" className="btn btn-primary">Зарегистрироваться</button>
+                <button type="submit" className="btn btn-primary">{props.loading ? (
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                ) : ('Зарегистрироваться')}</button>
             </form>
         </div>
     )

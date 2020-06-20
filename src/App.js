@@ -15,7 +15,6 @@ axios.defaults.baseURL = 'https://europe-west1-socialapp2-f9053.cloudfunctions.n
 
 const token = localStorage.token;
 if (token) {
-  debugger;
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp*1000 < Date.now()) {
     store.dispatch(logout());

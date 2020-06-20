@@ -3,13 +3,15 @@ import axios from 'axios';
 const initialState = {
     authUser: {},
     authorization: false,
-    receivedError: ''
+    receivedError: '',
+    loading: false
 }
 
 // Types
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_UNAUTHORIZATION = 'SET_UNAUTHORIZATION';
 const SET_ERROR = 'SET_ERROR';
+const SET_LOADING = 'SET_LOADING';
 
 // Users reducer
 const usersReducer = (state = initialState, action) => {
@@ -18,7 +20,9 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 authUser: action.userData,
-                authorization: true
+                authorization: true,
+                receivedError: '',
+                loading: false
             }
         case SET_UNAUTHORIZATION:
             return {
@@ -31,6 +35,11 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 receivedError: action.error
             }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
         default:
             return state;
     }
@@ -40,6 +49,7 @@ const usersReducer = (state = initialState, action) => {
 export const setAuthUserData = (userData) => ({ type: SET_AUTH_USER_DATA, userData });
 export const setUnauthorization = () => ({ type: SET_UNAUTHORIZATION });
 export const setError = (error) => ({ type: SET_ERROR, error });
+export const setLoading = () => ({type: SET_LOADING})
 
 // Thunks
 export const signUp = (userCredentials) => async (dispatch) => {
@@ -77,13 +87,13 @@ export const logout = () => (dispatch) => {
 }
 
 export const setMe = () => async (dispatch) => {
+    dispatch(setLoading())
     const userData = await axios.get('/me');
     dispatch(setAuthUserData(userData.data));
 }
 
 // Set auth token
 const setAuthToken = (authToken) => {
-    debugger;
     const token = `Bearer ${authToken}`;
     localStorage.setItem("token", token);
     axios.defaults.headers.common['Authorization'] = token;

@@ -20,7 +20,11 @@ const LoginForm = (props) => {
                     <Field name="password" component={Input} validate={requiredValidator} type="password" class="form-control" id="passwordInput" />
                 </div>
                 {props.receivedError && <div className="alert alert-danger">{props.receivedError}</div>}
-                <button type="submit" className="btn btn-primary">Войти</button>
+                <button type="submit" className="btn btn-primary">{props.loading ? (
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                ) : ('Войти')}</button>
             </form>
         </div>
     )

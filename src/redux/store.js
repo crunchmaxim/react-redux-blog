@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import usersReducer from './reducers/usersReducer';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
@@ -9,7 +9,7 @@ const reducers = combineReducers({
 })
 
 
-let store = createStore(reducers, applyMiddleware(thunk));
+let store = createStore(reducers, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 window.store = store;
 
