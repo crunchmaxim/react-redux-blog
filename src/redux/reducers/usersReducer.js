@@ -92,6 +92,18 @@ export const setMe = () => async (dispatch) => {
     dispatch(setAuthUserData(userData.data));
 }
 
+export const setNewAboutMe = (aboutMe) => async (dispatch) => {
+    await axios.post('/users/aboutme', {aboutMe});
+    const userData = await axios.get('/me');
+    dispatch(setAuthUserData(userData.data))
+}
+
+export const setNewStatus = (status) => async (dispatch) => {
+    await axios.post('/users/status', {status});
+    const userData = await axios.get('/me');
+    dispatch(setAuthUserData(userData.data))
+}
+
 // Set auth token
 const setAuthToken = (authToken) => {
     const token = `Bearer ${authToken}`;
