@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import {getAllPosts} from './../redux/reducers/dataReducer';
 import PostComponent from './PostComponent';
+import AddPost from './AddPost';
+
 
 const Posts = (props) => {
     useEffect(() => {
@@ -9,8 +11,15 @@ const Posts = (props) => {
         console.log('get all posts from use effect')
     }, [])
 
+    if (props.dataLoading) {
+        return (
+            <div>Загрузка...</div>
+        )
+    }
+
     return (
         <div>
+            <AddPost/>
             {props.posts.map(post => <PostComponent 
             imageUrl={post.imageUrl}
             username={post.username}
@@ -23,7 +32,8 @@ const Posts = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    posts: state.data.posts
+    posts: state.data.posts,
+    dataLoading: state.data.dataLoading
 })
 
 export default connect(mapStateToProps, {getAllPosts})(Posts);

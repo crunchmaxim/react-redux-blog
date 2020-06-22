@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles/Profile.css';
-import CreateIcon from '@material-ui/icons/Create';
 import { setNewAboutMe, setNewStatus, setUserImage } from '../redux/reducers/usersReducer';
 import AboutMe from './AboutMe';
 import Status from './Status';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+import CommentIcon from '@material-ui/icons/Comment';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus, setUserImage, loading }) => {
 
@@ -49,10 +51,9 @@ const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus, setUser
                 <p className='change-user-image' onClick={openImageInput}>Поменять изображение <AddPhotoAlternateIcon/></p>
                 <AboutMe aboutMe={authUser.details.aboutMe} setNewAboutMe={setNewAboutMe} />
                 <Status status={authUser.details.status} setNewStatus={setNewStatus} />
-                <p class="card-text">Постов создано: {authUser.posts.length}</p>
-                <p class="card-text">Комментариев оставлено: {authUser.comments.length}</p>
-                <p class="card-text">Поставлено лайков: {authUser.likes.length}</p>
-                <a href="#" class="btn btn-primary">Создать пост</a>
+                <p class="card-text">Постов: {authUser.posts.length} <BookmarkIcon/></p>
+                <p class="card-text">Комментариев: {authUser.comments.length} <CommentIcon/></p>
+                <p class="card-text">Лайков: {authUser.likes.length} <FavoriteIcon/></p>
             </div>
         </div>
     )

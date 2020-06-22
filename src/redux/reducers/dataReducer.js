@@ -1,18 +1,26 @@
 import axios from 'axios';
 
 const initialState = {
-    posts: []
+    posts: [],
+    dataLoading: false
 }
 
 // Types
 const SET_ALL_POSTS = 'SET_ALL_POSTS';
+const SET_DATA_LOADING = 'SET_DATA_LOADING';
 
 const dataReducer = (state=initialState, action) => {
     switch (action.type) {
         case SET_ALL_POSTS:
             return {
                 ...state,
-                posts: action.posts
+                posts: action.posts,
+                dataLoading: false
+            }
+        case SET_DATA_LOADING:
+            return {
+                ...state,
+                dataLoading: true
             }
         default:
             return state;
@@ -21,11 +29,19 @@ const dataReducer = (state=initialState, action) => {
 
 // Actions
 export const setAllPosts = (posts) => ({type: SET_ALL_POSTS, posts})
+export const setDataLoading = () => ({type: SET_DATA_LOADING})
 
 // Thunks
 export const getAllPosts = () => async (dispatch) => {
+    dispatch(setDataLoading());
     const response = await axios.get('/posts');
     dispatch(setAllPosts(response.data));
+}
+
+export const addPost = (title, body) => async (dispatch) => {
+    dispatch(setDataLoading());
+    await axios.post('/posts', {title, body});
+    dispatch(getAllPosts());
 }
 
 export default dataReducer;

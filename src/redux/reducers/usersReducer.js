@@ -54,6 +54,7 @@ export const setLoading = () => ({type: SET_LOADING})
 // Thunks
 export const signUp = (userCredentials) => async (dispatch) => {
     try {
+        dispatch(setLoading());
         const response = await axios.post('/signup', userCredentials);
         setAuthToken(response.data.token);
         dispatch(setMe());
@@ -72,6 +73,7 @@ export const signUp = (userCredentials) => async (dispatch) => {
 
 export const login = (userCredentials) => async (dispatch) => {
     try {
+        dispatch(setLoading());
         const response = await axios.post('/login', userCredentials);
         setAuthToken(response.data.token);
         dispatch(setMe());

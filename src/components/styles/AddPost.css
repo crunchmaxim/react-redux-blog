@@ -1,0 +1,13 @@
+.add-post textarea{
+    height: 200px;
+    resize: none;
+}
+
+.add-post-close {
+    float: right;
+    cursor: pointer;
+}
+
+.add-post-btn {
+    margin-bottom: 20px;
+}
