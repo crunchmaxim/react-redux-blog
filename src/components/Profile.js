@@ -3,39 +3,29 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles/Profile.css';
 import CreateIcon from '@material-ui/icons/Create';
-import { setNewAboutMe, setNewStatus } from '../redux/reducers/usersReducer';
+import { setNewAboutMe, setNewStatus, setUserImage } from '../redux/reducers/usersReducer';
+import AboutMe from './AboutMe';
+import Status from './Status';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 
-const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus}) => {
-    // Set new about me
-    const [openAboutMe, setOpenAboutMe] = useState(false);
-    const [aboutMe, setAboutMe] = useState('');
+const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus, setUserImage, loading }) => {
 
-    const onAboutMeChange = (event) => {
-        setAboutMe(event.target.value);
+    const openImageInput = () => {
+        const imageInput = document.getElementById('imageInput');
+        imageInput.click();
     }
 
-    const handleAboutMe = (newAboutMe) => {
-        if (openAboutMe) {
-            setNewAboutMe(newAboutMe);
-        }
-        setAboutMe(authUser.details.aboutMe);
-        setOpenAboutMe(!openAboutMe);
+    const handleUserImage = (event) => {
+        const image = event.target.files[0];
+        const formData = new FormData();
+        formData.append('image', image, image.name);
+        setUserImage(formData);
     }
 
-    // Set new status
-    const [openStatus, setOpenStatus] = useState(false);
-    const [status, setStatus] = useState('');
-
-    const onStatusChange = (event) => {
-        setStatus(event.target.value);
-    }
-
-    const handleStatus = (newStatus) => {
-        if (openStatus) {
-            setNewStatus(newStatus);
-        }
-        setStatus(authUser.details.status);
-        setOpenStatus(!openStatus);
+    if (loading) {
+        return (
+            <div>Загрузка...</div>
+        )
     }
 
     if (!authorization) {
@@ -52,17 +42,13 @@ const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus}) => {
 
     return (
         <div class="card">
+            <h4 class="card-title profile-title">{authUser.details.username}</h4>
             <img src={authUser.details.imageUrl} class="card-img-top" alt="image" />
             <div class="card-body">
-                <h5 class="card-title profile-title">{authUser.details.username}</h5>
-                <p class="card-text">Обо мне: {openAboutMe ? 
-                <input value={aboutMe} onChange={onAboutMeChange} onBlur={() => handleAboutMe(aboutMe)}/> : (authUser.details.aboutMe ? authUser.details.aboutMe  : '')}
-                <CreateIcon className='create-icon' onClick={() => handleAboutMe(aboutMe)}/>
-                </p>
-                <p class="card-text">Статус: {openStatus ? 
-                <input value={status} onChange={onStatusChange} onBlur={() => handleStatus(status)}/> : (authUser.details.status ? authUser.details.status  : '')}
-                <CreateIcon className='create-icon' onClick={() => handleStatus(status)}/>
-                </p>
+                <input id='imageInput' type='file' hidden onChange={handleUserImage}/>
+                <p className='change-user-image' onClick={openImageInput}>Поменять изображение <AddPhotoAlternateIcon/></p>
+                <AboutMe aboutMe={authUser.details.aboutMe} setNewAboutMe={setNewAboutMe} />
+                <Status status={authUser.details.status} setNewStatus={setNewStatus} />
                 <p class="card-text">Постов создано: {authUser.posts.length}</p>
                 <p class="card-text">Комментариев оставлено: {authUser.comments.length}</p>
                 <p class="card-text">Поставлено лайков: {authUser.likes.length}</p>
@@ -74,7 +60,8 @@ const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus}) => {
 
 const mapStateToProps = (state) => ({
     authUser: { ...state.users.authUser },
-    authorization: state.users.authorization
+    authorization: state.users.authorization,
+    loading: state.users.loading
 })
 
-export default connect(mapStateToProps, {setNewAboutMe, setNewStatus})(Profile);
+export default connect(mapStateToProps, { setNewAboutMe, setNewStatus, setUserImage })(Profile);

@@ -87,21 +87,24 @@ export const logout = () => (dispatch) => {
 }
 
 export const setMe = () => async (dispatch) => {
-    dispatch(setLoading())
+    dispatch(setLoading());
     const userData = await axios.get('/me');
     dispatch(setAuthUserData(userData.data));
 }
 
 export const setNewAboutMe = (aboutMe) => async (dispatch) => {
     await axios.post('/users/aboutme', {aboutMe});
-    const userData = await axios.get('/me');
-    dispatch(setAuthUserData(userData.data))
+    dispatch(setMe());
 }
 
 export const setNewStatus = (status) => async (dispatch) => {
     await axios.post('/users/status', {status});
-    const userData = await axios.get('/me');
-    dispatch(setAuthUserData(userData.data))
+    dispatch(setMe());
+}
+
+export const setUserImage = (image) => async (dispatch) => {
+    await axios.post('/users/image', image);
+    dispatch(setMe());
 }
 
 // Set auth token

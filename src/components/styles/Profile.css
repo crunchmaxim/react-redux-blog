@@ -1,9 +1,16 @@
+.change-user-image {
+    cursor: pointer;
+    font-size: 12px;
+    text-align: center;
+}
+
 .profile-btn {
     margin: 0 5px;
 }
 
 .profile-title {
     text-align: center;
+    margin-top: 10px;
 }
 
 .create-icon {
