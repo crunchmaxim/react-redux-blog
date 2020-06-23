@@ -26,6 +26,8 @@ const Posts = (props) => {
             body={post.body}
             createdAt={post.createdAt}
             title={post.title}
+            likesCount={post.likesCount}
+            commentsCount={post.commentsCount}
             postId={post.id}
             />)}
         </div>

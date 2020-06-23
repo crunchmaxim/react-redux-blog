@@ -4,9 +4,20 @@ import './styles/PostComponent.css';
 import { connect } from 'react-redux';
 import DeletePost from './DeletePost';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import {deletePost} from './../redux/reducers/dataReducer';
+import { deletePost, likePost, unlikePost } from './../redux/reducers/dataReducer';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import MessageIcon from '@material-ui/icons/Message';
 
 const PostComponent = (props) => {
+
+    const handleLike = (postId) => {
+        props.likePost(postId);
+    }
+
+    const handleUnlike = (postId) => {
+        props.unlikePost(postId);
+    }
 
     return (
         <div className="card mb-3">
@@ -19,8 +30,16 @@ const PostComponent = (props) => {
                     <div className="card-body">
                         <h5 className="card-title">{props.title}</h5>
                         <p className="card-text">{props.body}</p>
-                        <p className="card-text"><small className="text-muted"><AccessTimeIcon/> {dayjs(props.createdAt).format('DD.MM.YYYY г.')}</small></p>
-                        {props.authorization && (props.authUser.details.username === props.username ? <DeletePost postId={props.postId} deletePost={props.deletePost}/> : '')}
+                        <p className="card-text"><small className="text-muted"><AccessTimeIcon /> {dayjs(props.createdAt).format('DD.MM.YYYY г.')}</small></p>
+                        <div className="like-comment">
+                            <span>
+                                {props.authorization && props.authUser.likes.filter(like => like.postId === props.postId).length > 0
+                                    ? (<FavoriteIcon className='like-btn onlike' onClick={() => handleUnlike(props.postId)} />)
+                                    : (<FavoriteBorderIcon className='like-btn' onClick={() => handleLike(props.postId)} />)} {props.likesCount}
+                            </span>
+                            <span><MessageIcon /> {props.commentsCount}</span>
+                        </div>
+                        {props.authorization && (props.authUser.details.username === props.username ? <DeletePost postId={props.postId} deletePost={props.deletePost} /> : '')}
                     </div>
                 </div>
             </div>
@@ -33,4 +52,4 @@ const mapStateToProps = (state) => ({
     authorization: state.users.authorization
 })
 
-export default connect(mapStateToProps, {deletePost})(PostComponent);
+export default connect(mapStateToProps, { deletePost, likePost, unlikePost })(PostComponent);

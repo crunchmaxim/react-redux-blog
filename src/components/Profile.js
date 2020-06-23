@@ -7,8 +7,8 @@ import AboutMe from './AboutMe';
 import Status from './Status';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
-import CommentIcon from '@material-ui/icons/Comment';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import MessageIcon from '@material-ui/icons/Message';
 
 const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus, setUserImage, loading }) => {
 
@@ -52,7 +52,7 @@ const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus, setUser
                 <AboutMe aboutMe={authUser.details.aboutMe} setNewAboutMe={setNewAboutMe} />
                 <Status status={authUser.details.status} setNewStatus={setNewStatus} />
                 <p class="card-text">Постов: {authUser.posts.length} <BookmarkIcon/></p>
-                <p class="card-text">Комментариев: {authUser.comments.length} <CommentIcon/></p>
+                <p class="card-text">Комментариев: {authUser.comments.length} <MessageIcon/></p>
                 <p class="card-text">Лайков: {authUser.likes.length} <FavoriteIcon/></p>
             </div>
         </div>

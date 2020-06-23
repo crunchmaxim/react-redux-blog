@@ -9,3 +9,15 @@
     justify-content: start;
     padding-top: 20px;
 }
+
+.like-btn {
+    cursor: pointer;
+}
+
+.like-btn.onlike {
+    color: red;
+}
+
+.like-comment span {
+    margin-right: 10px;
+}

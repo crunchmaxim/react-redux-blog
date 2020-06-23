@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {setAuthUserData} from './usersReducer';
 
 const initialState = {
     posts: [],
@@ -48,6 +49,22 @@ export const deletePost = (postId) => async (dispatch) => {
     dispatch(setDataLoading());
     await axios.delete(`/posts/${postId}`);
     dispatch(getAllPosts());
+}
+
+export const likePost = (postId) => async (dispatch) => {
+    await axios.get(`/posts/${postId}/like`);
+    const response = await axios.get('/posts');
+    dispatch(setAllPosts(response.data));
+    const userData = await axios.get('/me');
+    dispatch(setAuthUserData(userData.data));
+}
+
+export const unlikePost = (postId) => async (dispatch) => {
+    await axios.get(`/posts/${postId}/unlike`);
+    const response = await axios.get('/posts');
+    dispatch(setAllPosts(response.data));
+    const userData = await axios.get('/me');
+    dispatch(setAuthUserData(userData.data));
 }
 
 export default dataReducer;
