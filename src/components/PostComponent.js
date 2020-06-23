@@ -1,6 +1,10 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import './styles/PostComponent.css';
+import { connect } from 'react-redux';
+import DeletePost from './DeletePost';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import {deletePost} from './../redux/reducers/dataReducer';
 
 const PostComponent = (props) => {
 
@@ -15,7 +19,8 @@ const PostComponent = (props) => {
                     <div className="card-body">
                         <h5 className="card-title">{props.title}</h5>
                         <p className="card-text">{props.body}</p>
-                        <p className="card-text"><small className="text-muted">Размещено {dayjs(props.createdAt).format('DD.MM.YYYY г.')}</small></p>
+                        <p className="card-text"><small className="text-muted"><AccessTimeIcon/> {dayjs(props.createdAt).format('DD.MM.YYYY г.')}</small></p>
+                        {props.authorization && (props.authUser.details.username === props.username ? <DeletePost postId={props.postId} deletePost={props.deletePost}/> : '')}
                     </div>
                 </div>
             </div>
@@ -23,4 +28,9 @@ const PostComponent = (props) => {
     )
 }
 
-export default PostComponent;
+const mapStateToProps = (state) => ({
+    authUser: state.users.authUser,
+    authorization: state.users.authorization
+})
+
+export default connect(mapStateToProps, {deletePost})(PostComponent);

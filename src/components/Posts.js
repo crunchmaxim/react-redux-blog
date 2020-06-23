@@ -26,6 +26,7 @@ const Posts = (props) => {
             body={post.body}
             createdAt={post.createdAt}
             title={post.title}
+            postId={post.id}
             />)}
         </div>
     )
@@ -33,7 +34,7 @@ const Posts = (props) => {
 
 const mapStateToProps = (state) => ({
     posts: state.data.posts,
-    dataLoading: state.data.dataLoading
+    dataLoading: state.data.dataLoading,
 })
 
 export default connect(mapStateToProps, {getAllPosts})(Posts);

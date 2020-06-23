@@ -44,4 +44,10 @@ export const addPost = (title, body) => async (dispatch) => {
     dispatch(getAllPosts());
 }
 
+export const deletePost = (postId) => async (dispatch) => {
+    dispatch(setDataLoading());
+    await axios.delete(`/posts/${postId}`);
+    dispatch(getAllPosts());
+}
+
 export default dataReducer;

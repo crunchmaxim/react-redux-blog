@@ -1,0 +1,14 @@
+.delete-post {
+    text-align: center;
+}
+
+.delete-post button {
+    margin: 0 5px;
+}
+
+.delete-post-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
