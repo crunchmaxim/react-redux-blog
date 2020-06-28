@@ -7,7 +7,7 @@ const AddPostForm = (props) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <CloseIcon className='add-post-close'onClick={() => props.setOpenAddPost(false)}/>
+                <CloseIcon className='add-post-close' onClick={() => props.setOpenAddPost(false)}/>
                 <div className="form-group">
                     <label for="postTitle">Название поста:</label>
                     <Field name="postTitle" component={Input} validate={[requiredValidator]} type="text" class="form-control" id="postTitle" />
@@ -16,7 +16,6 @@ const AddPostForm = (props) => {
                     <label for="postBody">Текст поста:</label>
                     <Field name="postBody" component={Textarea} validate={requiredValidator} type="text" class="form-control" id="postBody" />
                 </div>
-                {props.receivedError && <div className="alert alert-danger">{props.receivedError}</div>}
                 <button type="submit" className="btn btn-primary">Добавить</button>
             </form>
         </div>

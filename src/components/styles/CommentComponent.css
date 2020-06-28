@@ -1,0 +1,16 @@
+.comment-user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.comment-date {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+}
+
+.comment {
+    margin: 10px auto;
+}

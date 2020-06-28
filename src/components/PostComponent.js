@@ -7,7 +7,7 @@ import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { deletePost, likePost, unlikePost } from './../redux/reducers/dataReducer';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import MessageIcon from '@material-ui/icons/Message';
+import Comments from './Comments';
 
 const PostComponent = (props) => {
 
@@ -37,7 +37,7 @@ const PostComponent = (props) => {
                                     ? (<FavoriteIcon className='like-btn onlike' onClick={() => handleUnlike(props.postId)} />)
                                     : (<FavoriteBorderIcon className='like-btn' onClick={() => handleLike(props.postId)} />)} {props.likesCount}
                             </span>
-                            <span><MessageIcon /> {props.commentsCount}</span>
+                            <Comments commentsCount={props.commentsCount} postId={props.postId}/>
                         </div>
                         {props.authorization && (props.authUser.details.username === props.username ? <DeletePost postId={props.postId} deletePost={props.deletePost} /> : '')}
                     </div>

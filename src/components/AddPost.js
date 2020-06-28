@@ -20,7 +20,7 @@ const AddPost = ({ authUser, authorization, addPost }) => {
 
     return (
         <div>
-            <button onClick={() => setOpenAddPost(!openAddPost)} type="button" class="btn btn-primary btn-lg btn-block add-post-btn">Новый пост <AddBoxIcon /></button>
+            <button onClick={() => setOpenAddPost(!openAddPost)} type="button" class="btn btn-primary btn-lg btn-block add-post-btn">Новый пост<AddBoxIcon /></button>
             {openAddPost && (
                 <div className="card mb-3 add-post">
                     <div className="row no-gutters">

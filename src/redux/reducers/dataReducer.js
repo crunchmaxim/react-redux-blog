@@ -3,12 +3,14 @@ import {setAuthUserData} from './usersReducer';
 
 const initialState = {
     posts: [],
+    postComments: [],
     dataLoading: false
 }
 
 // Types
 const SET_ALL_POSTS = 'SET_ALL_POSTS';
 const SET_DATA_LOADING = 'SET_DATA_LOADING';
+const SET_POST_COMMENTS = 'SET_POST_COMMENTS';
 
 const dataReducer = (state=initialState, action) => {
     switch (action.type) {
@@ -23,6 +25,12 @@ const dataReducer = (state=initialState, action) => {
                 ...state,
                 dataLoading: true
             }
+        case SET_POST_COMMENTS:
+            return {
+                ...state,
+                postComments: action.comments,
+                dataLoading: false
+            }
         default:
             return state;
     }
@@ -31,6 +39,7 @@ const dataReducer = (state=initialState, action) => {
 // Actions
 export const setAllPosts = (posts) => ({type: SET_ALL_POSTS, posts})
 export const setDataLoading = () => ({type: SET_DATA_LOADING})
+export const setPostComments = (comments) => ({type: SET_POST_COMMENTS, comments})
 
 // Thunks
 export const getAllPosts = () => async (dispatch) => {
@@ -65,6 +74,16 @@ export const unlikePost = (postId) => async (dispatch) => {
     dispatch(setAllPosts(response.data));
     const userData = await axios.get('/me');
     dispatch(setAuthUserData(userData.data));
+}
+
+export const getPostComments = (postId) => async (dispatch) => {
+    const response = await axios.get(`/posts/${postId}/comments`);
+    dispatch(setPostComments(response.data));
+}
+
+export const addComment = (postId, body) => async (dispatch) => {
+    await axios.post(`/posts/${postId}/comment`, {body});
+    dispatch(getPostComments(postId));
 }
 
 export default dataReducer;
