@@ -2,6 +2,9 @@ import React from 'react';
 import dayjs from 'dayjs';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import './styles/CommentComponent.css';
+import { connect } from 'react-redux';
+import DeleteComment from './DeleteComment';
+import { deleteComment } from './../redux/reducers/dataReducer';
 
 const CommentComponent = (props) => {
     return (
@@ -15,6 +18,7 @@ const CommentComponent = (props) => {
                     <div className="card-body">
                         <p className="card-text">{props.body}</p>
                         <p className="card-text comment-date"><small className="text-muted"><AccessTimeIcon /> {dayjs(props.createdAt).format('DD.MM.YYYY г.')}</small></p>
+                        {props.authorization && props.authUser.details.username === props.username ? <DeleteComment commentId={props.commentId} postId={props.postId} deleteComment={props.deleteComment}/> : null}
                     </div>
                 </div>
             </div>
@@ -22,4 +26,9 @@ const CommentComponent = (props) => {
     )
 }
 
-export default CommentComponent;
+const mapStateToProps = (state) => ({
+    authUser: state.users.authUser,
+    authorization: state.users.authorization
+})
+
+export default connect(mapStateToProps, {deleteComment})(CommentComponent);

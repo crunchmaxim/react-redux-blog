@@ -16,7 +16,7 @@ const AddComment = (props) => {
         <div>
             <button onClick={() => setOpenAddComment(!openAddComment)} type="button" class="btn btn-primary btn-lg btn-block add-comment-btn">Добавить комментарий</button>
             {openAddComment && (
-                <div className="card mb-3 comment">
+                <div className="card mb-3">
                     <div className="row no-gutters">
                         <div className="col-md-2 comment-user-info">
                             <h5>{props.username}</h5>

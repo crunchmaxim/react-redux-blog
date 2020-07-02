@@ -86,4 +86,9 @@ export const addComment = (postId, body) => async (dispatch) => {
     dispatch(getPostComments(postId));
 }
 
+export const deleteComment = (commentId, postId) => async (dispatch) => {
+    await axios.delete(`/comments/${commentId}`);
+    dispatch(getPostComments(postId));
+}
+
 export default dataReducer;

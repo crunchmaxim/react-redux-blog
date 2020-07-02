@@ -28,6 +28,8 @@ const Comments = (props) => {
                             imageUrl={comment.imageUrl}
                             body={comment.body}
                             createdAt={comment.createdAt}
+                            commentId={comment.id}
+                            postId={props.postId}
                         />
                     )}
                     {props.authorization 

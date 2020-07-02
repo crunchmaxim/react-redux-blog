@@ -1,12 +1,12 @@
-.delete-post {
+.delete-comment {
     text-align: center;
 }
 
-.delete-post button {
+.delete-comment button {
     margin: 0 5px;
 }
 
-.delete-post-btn {
+.delete-comment-btn {
     cursor: pointer;
     position: absolute;
     top: 2px;
