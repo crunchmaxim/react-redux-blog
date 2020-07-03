@@ -6,6 +6,7 @@ const DeleteComment = (props) => {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
     const handleDeleteComment = () => {
+        setOpenDeleteModal(!openDeleteModal);
         props.deleteComment(props.commentId, props.postId)
     }
 
