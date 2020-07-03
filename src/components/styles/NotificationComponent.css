@@ -1,0 +1,15 @@
+.sender-image {
+    width: 30px;
+}
+
+.notification {
+    margin: 0;
+}
+
+.notification-comment {
+    color: black;
+}
+
+.notification-like {
+    color: red;
+}

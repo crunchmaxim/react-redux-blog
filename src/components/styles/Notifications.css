@@ -1,0 +1,26 @@
+.notifications-on {
+    color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notifications-on :hover{
+    transition: 0.3s all;
+    color: white;
+}
+
+.notifications-off {
+    color: white;
+}
+
+.notifications-off :hover{
+    color: black;
+    transition: 0.3s all;
+}
+
+.notifications-wrapper {
+    position: absolute;
+    right: 80px;
+    z-index: 1;
+}

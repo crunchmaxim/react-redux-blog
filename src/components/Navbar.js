@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {logout} from './../redux/reducers/usersReducer';
 import { Link } from 'react-router-dom';
 import logo from './../images/logo192.png';
+import Notifications from './Notifications';
 import './styles/Navbar.css';
 
 const Navbar = (props) => {
@@ -19,6 +20,9 @@ const Navbar = (props) => {
             <>
             <li class="nav-item">
               <Link class="nav-link" to="/">Вы авторизованы как {props.authUser.details.username}</Link>
+            </li>
+            <li class="nav-item">
+              <Notifications/>
             </li>
             <li class="nav-item">
               <Link class="nav-link" to="" onClick={props.logout}>Выйти</Link>
