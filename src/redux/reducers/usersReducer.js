@@ -109,6 +109,12 @@ export const setUserImage = (image) => async (dispatch) => {
     dispatch(setMe());
 }
 
+export const deleteNotification = (notificationId) => async (dispatch) => {
+    await axios.delete(`/notifications/${notificationId}`);
+    const userData = await axios.get('/me');
+    dispatch(setAuthUserData(userData.data));
+}
+
 // Set auth token
 const setAuthToken = (authToken) => {
     const token = `Bearer ${authToken}`;

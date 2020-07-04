@@ -4,6 +4,7 @@ import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import { connect } from 'react-redux';
 import './styles/Notifications.css';
 import NotificationComponent from './NotificationComponent';
+import { deleteNotification } from './../redux/reducers/usersReducer';
 
 const Notifications = (props) => {
     const [openNotifications, setOpenNotifications] = useState(false);
@@ -27,6 +28,8 @@ const Notifications = (props) => {
                         senderImage={not.senderImage}
                         type={not.type}
                         postTitle={not.postTitle}
+                        notificationId={not.id}
+                        deleteNotification={props.deleteNotification}
                     />)}
                 </div>
             )}
@@ -39,4 +42,4 @@ const mapStateToProps = (state) => ({
     notifications: state.users.authUser.notifications
 })
 
-export default connect(mapStateToProps)(Notifications);
+export default connect(mapStateToProps, {deleteNotification})(Notifications);

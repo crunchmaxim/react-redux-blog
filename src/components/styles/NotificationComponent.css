@@ -4,6 +4,7 @@
 
 .notification {
     margin: 0;
+    cursor: default;
 }
 
 .notification-comment {
@@ -12,4 +13,13 @@
 
 .notification-like {
     color: red;
+}
+
+.mark-read {
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.mark-read :hover{
+    text-decoration: underline;
 }
