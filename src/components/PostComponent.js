@@ -4,13 +4,13 @@ import './styles/PostComponent.css';
 import { connect } from 'react-redux';
 import DeletePost from './DeletePost';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import { deletePost, likePost, unlikePost } from './../redux/reducers/dataReducer';
+import { deletePost, likePost, unlikePost, setPostImage } from './../redux/reducers/dataReducer';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Comments from './Comments';
+import AddPostImage from './AddPostImage';
 
 const PostComponent = (props) => {
-
     const handleLike = (postId) => {
         props.likePost(postId);
     }
@@ -28,7 +28,8 @@ const PostComponent = (props) => {
                 </div>
                 <div className="col-md-10">
                     <div className="card-body">
-                        <h5 className="card-title">{props.title}</h5>
+                        <h5 className="card-title post-title">{props.title}</h5>
+                        {props.postImageUrl && <div className='post-image'><img src={props.postImageUrl}/></div>}
                         <p className="card-text">{props.body}</p>
                         <p className="card-text"><small className="text-muted"><AccessTimeIcon /> {dayjs(props.createdAt).format('DD.MM.YYYY г.')}</small></p>
                         <div className="like-comment">
@@ -40,6 +41,7 @@ const PostComponent = (props) => {
                             <Comments commentsCount={props.commentsCount} postId={props.postId}/>
                         </div>
                         {props.authorization && (props.authUser.details.username === props.username ? <DeletePost postId={props.postId} deletePost={props.deletePost} /> : '')}
+                        {props.authorization && (props.authUser.details.username === props.username ? <AddPostImage postId={props.postId} setPostImage={props.setPostImage} /> : '')}
                     </div>
                 </div>
             </div>
@@ -52,4 +54,4 @@ const mapStateToProps = (state) => ({
     authorization: state.users.authorization
 })
 
-export default connect(mapStateToProps, { deletePost, likePost, unlikePost })(PostComponent);
+export default connect(mapStateToProps, { deletePost, likePost, unlikePost, setPostImage })(PostComponent);

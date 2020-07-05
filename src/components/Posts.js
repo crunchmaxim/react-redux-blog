@@ -29,6 +29,7 @@ const Posts = (props) => {
             likesCount={post.likesCount}
             commentsCount={post.commentsCount}
             postId={post.id}
+            postImageUrl={post.postImageUrl}
             />)}
         </div>
     )

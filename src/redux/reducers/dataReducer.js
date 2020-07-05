@@ -91,4 +91,10 @@ export const deleteComment = (commentId, postId) => async (dispatch) => {
     dispatch(getPostComments(postId));
 }
 
+export const setPostImage = (postId, image) => async (dispatch) => {
+    await axios.post(`/posts/${postId}/image`, image);
+    const response = await axios.get('/posts');
+    dispatch(setAllPosts(response.data));
+}
+
 export default dataReducer;
