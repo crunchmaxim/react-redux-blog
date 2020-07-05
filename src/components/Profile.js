@@ -2,15 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './styles/Profile.css';
-import { setNewAboutMe, setNewStatus, setUserImage } from '../redux/reducers/usersReducer';
-import AboutMe from './AboutMe';
-import Status from './Status';
+import { setUserImage } from '../redux/reducers/usersReducer';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MessageIcon from '@material-ui/icons/Message';
 
-const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus, setUserImage, loading }) => {
+const Profile = ({ authorization, authUser, setUserImage, loading }) => {
 
     const openImageInput = () => {
         const imageInput = document.getElementById('imageInput');
@@ -49,8 +47,6 @@ const Profile = ({ authorization, authUser, setNewAboutMe, setNewStatus, setUser
             <div class="card-body">
                 <input id='imageInput' type='file' hidden onChange={handleUserImage}/>
                 <p className='change-user-image' onClick={openImageInput}>Поменять изображение <AddPhotoAlternateIcon/></p>
-                <AboutMe aboutMe={authUser.details.aboutMe} setNewAboutMe={setNewAboutMe} />
-                <Status status={authUser.details.status} setNewStatus={setNewStatus} />
                 <p class="card-text">Постов: {authUser.posts.length} <BookmarkIcon/></p>
                 <p class="card-text">Комментариев: {authUser.comments.length} <MessageIcon/></p>
                 <p class="card-text">Лайков: {authUser.likes.length} <FavoriteIcon/></p>
@@ -65,4 +61,4 @@ const mapStateToProps = (state) => ({
     loading: state.users.loading
 })
 
-export default connect(mapStateToProps, { setNewAboutMe, setNewStatus, setUserImage })(Profile);
+export default connect(mapStateToProps, { setUserImage })(Profile);

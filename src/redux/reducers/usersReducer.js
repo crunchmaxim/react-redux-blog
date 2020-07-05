@@ -94,16 +94,6 @@ export const setMe = () => async (dispatch) => {
     dispatch(setAuthUserData(userData.data));
 }
 
-export const setNewAboutMe = (aboutMe) => async (dispatch) => {
-    await axios.post('/users/aboutme', {aboutMe});
-    dispatch(setMe());
-}
-
-export const setNewStatus = (status) => async (dispatch) => {
-    await axios.post('/users/status', {status});
-    dispatch(setMe());
-}
-
 export const setUserImage = (image) => async (dispatch) => {
     await axios.post('/users/image', image);
     dispatch(setMe());
