@@ -1,0 +1,20 @@
+.template-post-username {
+    background-color: gray;
+    height: 20px;
+    width: 60%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.template-post-title {
+    background-color: gray;
+    height: 20px;
+    width: 60%;
+    margin-bottom: 16px;
+}
+
+.template-post-body {
+    background-color: gray;
+    height: 20px;
+    margin-bottom: 16px;
+}

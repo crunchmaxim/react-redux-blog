@@ -7,6 +7,7 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import MessageIcon from '@material-ui/icons/Message';
+import ProfileLoadingTemplate from './ProfileLoadingTemplate';
 
 const Profile = ({ authorization, authUser, setUserImage, loading }) => {
 
@@ -24,7 +25,7 @@ const Profile = ({ authorization, authUser, setUserImage, loading }) => {
 
     if (loading) {
         return (
-            <div>Загрузка...</div>
+            <ProfileLoadingTemplate />
         )
     }
 
@@ -41,17 +42,19 @@ const Profile = ({ authorization, authUser, setUserImage, loading }) => {
     }
 
     return (
-        <div class="card">
-            <h4 class="card-title profile-title">{authUser.details.username}</h4>
-            <img src={authUser.details.imageUrl} class="card-img-top" alt="image" />
-            <div class="card-body">
-                <input id='imageInput' type='file' hidden onChange={handleUserImage}/>
-                <p className='change-user-image' onClick={openImageInput}>Поменять изображение <AddPhotoAlternateIcon/></p>
-                <p class="card-text">Постов: {authUser.posts.length} <BookmarkIcon/></p>
-                <p class="card-text">Комментариев: {authUser.comments.length} <MessageIcon/></p>
-                <p class="card-text">Лайков: {authUser.likes.length} <FavoriteIcon/></p>
+        <>
+            <div class="card">
+                <h4 class="card-title profile-title">{authUser.details.username}</h4>
+                <img src={authUser.details.imageUrl} class="card-img-top" alt="image" />
+                <div class="card-body">
+                    <input id='imageInput' type='file' hidden onChange={handleUserImage} />
+                    <p className='change-user-image' onClick={openImageInput}>Поменять изображение <AddPhotoAlternateIcon /></p>
+                    <p class="card-text">Постов: {authUser.posts.length} <BookmarkIcon /></p>
+                    <p class="card-text">Комментариев: {authUser.comments.length} <MessageIcon /></p>
+                    <p class="card-text">Лайков: {authUser.likes.length} <FavoriteIcon /></p>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

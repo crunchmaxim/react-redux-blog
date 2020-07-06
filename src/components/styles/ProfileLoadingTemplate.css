@@ -1,0 +1,29 @@
+.template-profile-username {
+    background-color: gray;
+    height: 20px;
+    width: 60%;
+    margin: 10px auto;
+}
+
+.template-profile-image {
+    background-color: gray;
+    height: 20px;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+.template-profile-change-img {
+    background-color: gray;
+    height: 12px;
+    width: 60%;
+    margin: 15px auto;
+}
+
+.template-profile-info {
+    background-color: gray;
+    height: 20px;
+    width: 60%;
+    margin-left: 20px;
+    margin-bottom: 16px;
+}
