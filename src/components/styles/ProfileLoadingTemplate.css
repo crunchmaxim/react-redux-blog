@@ -6,11 +6,9 @@
 }
 
 .template-profile-image {
-    background-color: gray;
-    height: 20px;
-    width: 60%;
+    width: 100%;
+    max-width: 200px;
     margin: 0 auto;
-    margin-top: 10px;
 }
 
 .template-profile-change-img {
@@ -26,4 +24,11 @@
     width: 60%;
     margin-left: 20px;
     margin-bottom: 16px;
+}
+
+@media (max-width: 576px) {
+    .template-profile-info {
+        margin: 0 auto;
+        margin-bottom: 16px;
+    }
 }

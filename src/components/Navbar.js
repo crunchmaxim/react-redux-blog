@@ -8,14 +8,11 @@ import './styles/Navbar.css';
 
 const Navbar = (props) => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <img className='logo' src={logo}/>
+    <nav class="navbar navbar-expand navbar-dark bg-primary">
+      <Link to="/"><img className='logo' src={logo}/></Link>
       <Link class="navbar-brand" to="/">Socialapp 2</Link>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <Link class="nav-link" to="/">На главную</Link>
-          </li>
+        <ul class="navbar-nav ml-auto navbar-links">
           {props.authorization ? (
             <>
             <li class="nav-item">

@@ -15,7 +15,7 @@ const AddPost = ({ authUser, authorization, addPost }) => {
     }
 
     if (!authorization) {
-        return <h5>Добавлять посты могут только авторизированные пользователи. <br/> <Link to='/login'>Войдите</Link> или <Link to='/signup'>зарегистрируйтесь</Link>.</h5>
+        return <h5 className="not-auth-post">Добавлять посты могут только авторизированные пользователи. <br/> <Link to='/login'>Войдите</Link> или <Link to='/signup'>зарегистрируйтесь</Link>.</h5>
     }
 
     return (

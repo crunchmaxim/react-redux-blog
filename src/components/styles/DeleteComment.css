@@ -12,3 +12,13 @@
     top: 2px;
     right: 5px;
 }
+
+.delete-comment button {
+    margin-top: 5px;
+}
+
+@media (max-width: 576px) {
+    .delete-comment {
+        padding: 5px;
+    }
+}

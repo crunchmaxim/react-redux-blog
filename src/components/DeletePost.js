@@ -14,6 +14,7 @@ const DeletePost = (props) => {
             <div className="delete-post-btn" onClick={() => setOpenDeleteModal(!openDeleteModal)}><DeleteIcon className="delete" /></div>
             {openDeleteModal && <div class="alert alert-danger delete-post" role="alert">
                 Вы уверены что хотите удалить этот пост?
+                <br/>
                 <button type="button" class="btn btn-secondary" onClick={() => setOpenDeleteModal(!openDeleteModal)}>Отмена</button>
                 <button type="button" class="btn btn-primary" onClick={handleDeletePost}>Удалить</button>
             </div>}

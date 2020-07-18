@@ -6,7 +6,7 @@ const ProfileLoadingTemplate = () => {
     return (
         <div className="card">
             <div className='template-profile-username'></div>
-            <img src={noImg} className="card-img-top"/>
+            <img src={noImg} className="card-img-top template-profile-image"/>
             <div className='template-profile-change-img'></div>
             <div className='template-profile-info'></div>
             <div className='template-profile-info'></div>

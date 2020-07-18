@@ -5,13 +5,13 @@ import './styles/PostLoadingTemplate.css';
 
 const PostLoadingTemplate = () => {
     return (
-        <div className="card mb-3">
+        <div className="card mb-3 template-post">
             <div className="row no-gutters">
-                <div className="col-md-2 user-info">
+                <div className="col-2 user-info">
                     <div className="template-post-username"></div>
-                    <img src={noImg} className="card-img" alt="image" />
+                    <img src={noImg} className="card-img template-post-image" alt="image" />
                 </div>
-                <div className="col-md-10">
+                <div className="col-10">
                     <div className="card-body">
                         <div className="template-post-title"></div>
                         <div className="template-post-body"></div>

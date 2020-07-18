@@ -20,14 +20,14 @@ const PostComponent = (props) => {
     }
 
     return (
-        <div className="card mb-3">
+        <div className="card mb-3 post">
             <div className="row no-gutters">
-                <div className="col-md-2 user-info">
+                <div className="col-2 user-info">
                     <h5>{props.username}</h5>
-                    <img src={props.imageUrl} className="card-img" alt="image" />
+                    <img src={props.imageUrl} className="card-img post-user-image" alt="image" />
                 </div>
-                <div className="col-md-10">
-                    <div className="card-body">
+                <div className="col-10">
+                    <div className="card-body post-body">
                         <h5 className="card-title post-title">{props.title}</h5>
                         {props.postImageUrl && <div className='post-image'><img src={props.postImageUrl}/></div>}
                         <p className="card-text">{props.body}</p>

@@ -24,3 +24,11 @@
     right: 80px;
     z-index: 1;
 }
+
+@media (max-width: 575px) {
+    .notifications-wrapper {
+        font-size: 12px;
+        top: 60px;
+        right: 0;
+    }
+}

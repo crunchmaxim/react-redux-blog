@@ -6,11 +6,28 @@
 }
 
 .comment-date {
-    /* position: absolute; */
     bottom: 5px;
     left: 20px;
+    margin-bottom: 0px;
 }
 
 .comment {
     margin: 10px auto;
+    padding: 5px 0 5px 5px;
+}
+
+.comment-user-image {
+    width: 100%;
+    max-width: 100px;
+}
+
+@media (max-width: 768px) {
+    .comment h5 {
+        font-size: 15px;
+    }
+
+    .comment .card-body {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
 }

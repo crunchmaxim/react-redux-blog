@@ -11,3 +11,9 @@
 .add-post-btn {
     margin-bottom: 20px;
 }
+
+@media (max-width: 576px) {
+    .not-auth-post {
+        font-size: 16px;
+    }
+}

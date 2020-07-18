@@ -31,11 +31,13 @@ const Profile = ({ authorization, authUser, setUserImage, loading }) => {
 
     if (!authorization) {
         return (
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text profile-title">Вы не авторизированы</p>
-                    <Link to='/login' class="btn btn-primary profile-btn">Войти</Link>
-                    <Link to='/signup' class="btn btn-primary profile-btn">Регистрация</Link>
+            <div className="card not-auth">
+                <div className="card-body">
+                    <p className="card-text profile-title">Вы не авторизированы</p>
+                    <div className="not-auth-buttons">
+                        <Link to='/login' className="btn btn-primary profile-btn">Войти</Link>
+                        <Link to='/signup' className="btn btn-primary profile-btn">Регистрация</Link>
+                    </div>
                 </div>
             </div>
         )
@@ -45,13 +47,13 @@ const Profile = ({ authorization, authUser, setUserImage, loading }) => {
         <>
             <div class="card">
                 <h4 class="card-title profile-title">{authUser.details.username}</h4>
-                <img src={authUser.details.imageUrl} class="card-img-top" alt="image" />
-                <div class="card-body">
+                <img src={authUser.details.imageUrl} className="card-img-top profile-image" alt="image" />
+                <div class="card-body profile-info-wrapper">
                     <input id='imageInput' type='file' hidden onChange={handleUserImage} />
                     <p className='change-user-image' onClick={openImageInput}>Поменять изображение <AddPhotoAlternateIcon /></p>
-                    <p class="card-text">Постов: {authUser.posts.length} <BookmarkIcon /></p>
-                    <p class="card-text">Комментариев: {authUser.comments.length} <MessageIcon /></p>
-                    <p class="card-text">Лайков: {authUser.likes.length} <FavoriteIcon /></p>
+                    <p class="card-text profile-info">Постов: {authUser.posts.length} <BookmarkIcon /></p>
+                    <p class="card-text profile-info">Комментариев: {authUser.comments.length} <MessageIcon /></p>
+                    <p class="card-text profile-info">Лайков: {authUser.likes.length} <FavoriteIcon /></p>
                 </div>
             </div>
         </>

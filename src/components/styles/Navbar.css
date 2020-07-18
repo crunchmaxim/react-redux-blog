@@ -17,5 +17,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    
+}
+
+@media (max-width: 575px) {
+    .navbar-brand {
+        display: none;
+    }
+
+    .nav-link {
+        font-size: 13px;
+    }
 }

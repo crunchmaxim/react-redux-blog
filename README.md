@@ -23,3 +23,5 @@ Frontend часть блога реализована на React. (https://react
 - Axios (https://www.npmjs.com/package/axios) - передача запросов к API.
 - Redux-thunk (https://www.npmjs.com/package/redux-thunk) - реализация асинхронных запросов к API.
 - Bootstrap (https://www.npmjs.com/package/bootstrap) - набор готовых компонентов.
+
+Блог оптимизирован под любые устройства, в т.ч. мобильные телефоны и планшеты.

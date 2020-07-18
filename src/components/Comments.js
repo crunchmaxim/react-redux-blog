@@ -34,13 +34,13 @@ const Comments = (props) => {
                     )}
                     {props.authorization 
                     ? <AddComment postId={props.postId} imageUrl={props.authUser.details.imageUrl} username={props.authUser.details.username}/> 
-                    : <span>Оставлять комментарии могут только авторизированные пользователи.&nbsp;<Link to='/signup'>Зарегистрируйтесь</Link> или <Link to='/login'>войдите</Link>.</span>}
+                    : <span className="comments-not-auth">Оставлять комментарии могут только авторизированные пользователи. <br/> <Link to='/signup'>Зарегистрируйтесь</Link> или <Link to='/login'>войдите</Link>.</span>}
                 </div>
             ) : (
                 <div className='comments-wrapper'>
                     {props.authorization 
                     ? <AddComment postId={props.postId} imageUrl={props.authUser.details.imageUrl} username={props.authUser.details.username}/> 
-                    : <span>Оставлять комментарии могут только авторизированные пользователи.&nbsp;<Link to='/signup'>Зарегистрируйтесь</Link> или <Link to='/login'>войдите</Link>.</span>}
+                    : <span className="comments-not-auth">Оставлять комментарии могут только авторизированные пользователи. <br/> <Link to='/signup'>Зарегистрируйтесь</Link> или <Link to='/login'>войдите</Link>.</span>}
             </div>
             ))}
         </>

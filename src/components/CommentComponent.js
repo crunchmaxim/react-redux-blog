@@ -10,11 +10,11 @@ const CommentComponent = (props) => {
     return (
         <div className="card mb-3 comment">
             <div className="row no-gutters">
-                <div className="col-md-2 comment-user-info">
+                <div className="col-2 comment-user-info">
                     <h5>{props.username}</h5>
-                    <img src={props.imageUrl} className="card-img" alt="image" />
+                    <img src={props.imageUrl} className="card-img comment-user-image" alt="image" />
                 </div>
-                <div className="col-md-10">
+                <div className="col-10">
                     <div className="card-body">
                         <p className="card-text">{props.body}</p>
                         <p className="card-text comment-date"><small className="text-muted"><AccessTimeIcon /> {dayjs(props.createdAt).format('DD.MM.YYYY г.')}</small></p>
