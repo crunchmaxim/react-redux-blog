@@ -8,30 +8,30 @@ import './styles/Navbar.css';
 
 const Navbar = (props) => {
   return (
-    <nav class="navbar navbar-expand navbar-dark bg-primary">
+    <nav className="navbar navbar-expand navbar-dark bg-primary">
       <Link to="/"><img className='logo' src={logo}/></Link>
-      <Link class="navbar-brand" to="/">Socialapp 2</Link>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto navbar-links">
+      <Link className="navbar-brand" to="/">Socialapp 2</Link>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav ml-auto navbar-links">
           {props.authorization ? (
             <>
-            <li class="nav-item">
-              <Link class="nav-link" to="/">Вы авторизованы как {props.authUser.details.username}</Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Вы авторизованы как {props.authUser.details.username}</Link>
             </li>
-            <li class="nav-item">
+            <li className="nav-item">
               <Notifications/>
             </li>
-            <li class="nav-item">
-              <Link class="nav-link" to="" onClick={props.logout}>Выйти</Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="" onClick={props.logout}>Выйти</Link>
             </li>
             </>
           ) : (
             <>
-              <li class="nav-item">
-                <Link class="nav-link" to="/login">Войти</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login">Войти</Link>
               </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/signup">Зарегистрироваться</Link>
+              <li className="nav-item">
+                <Link className="nav-link" to="/signup">Зарегистрироваться</Link>
               </li>
             </>
             )}

@@ -45,15 +45,15 @@ const Profile = ({ authorization, authUser, setUserImage, loading }) => {
 
     return (
         <>
-            <div class="card">
-                <h4 class="card-title profile-title">{authUser.details.username}</h4>
+            <div className="card">
+                <h4 className="card-title profile-title">{authUser.details.username}</h4>
                 <img src={authUser.details.imageUrl} className="card-img-top profile-image" alt="image" />
-                <div class="card-body profile-info-wrapper">
+                <div className="card-body profile-info-wrapper">
                     <input id='imageInput' type='file' hidden onChange={handleUserImage} />
                     <p className='change-user-image' onClick={openImageInput}>Поменять изображение <AddPhotoAlternateIcon /></p>
-                    <p class="card-text profile-info">Постов: {authUser.posts.length} <BookmarkIcon /></p>
-                    <p class="card-text profile-info">Комментариев: {authUser.comments.length} <MessageIcon /></p>
-                    <p class="card-text profile-info">Лайков: {authUser.likes.length} <FavoriteIcon /></p>
+                    <p className="card-text profile-info">Постов: {authUser.posts.length} <BookmarkIcon /></p>
+                    <p className="card-text profile-info">Комментариев: {authUser.comments.length} <MessageIcon /></p>
+                    <p className="card-text profile-info">Лайков: {authUser.likes.length} <FavoriteIcon /></p>
                 </div>
             </div>
         </>

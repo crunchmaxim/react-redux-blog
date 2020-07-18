@@ -4,11 +4,11 @@ import Profile from './Profile'
 
 const HomePage = () => {
   return (
-      <div class="row">
-        <div class="col-sm-4 col-md-3">
+      <div className="row">
+        <div className="col-sm-4 col-md-3">
           <Profile/>
         </div>
-        <div class="col-sm-8 col-md-9">
+        <div className="col-sm-8 col-md-9">
           <Posts />
         </div>
       </div>

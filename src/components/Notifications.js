@@ -14,7 +14,7 @@ const Notifications = (props) => {
             {props.authorization && props.notifications.length > 0 ? (
                 <div className='notifications-on' onClick={() => setOpenNotifications(!openNotifications)}>
                     <NotificationsActiveIcon />
-                    <span class="badge badge-secondary">{props.notifications.length}</span>
+                    <span className="badge badge-secondary">{props.notifications.length}</span>
                 </div>
             ) : (
                     <div className='notifications-off'>
